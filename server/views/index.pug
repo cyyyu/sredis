@@ -1,0 +1,99 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Sredis
+    link(rel='stylesheet', href='https://cdn.bootcss.com/semantic-ui/2.2.6/semantic.css')
+    style.
+      #table-container {
+        margin-top: 6em;
+        margin-bottom: 3em;
+      }
+    script(src='https://cdn.bootcss.com/socket.io/1.7.2/socket.io.min.js')
+    script(src='https://cdn.bootcss.com/vue/2.1.6/vue.min.js')
+    script(src='https://cdn.bootcss.com/Chart.js/2.4.0/Chart.min.js')
+  body
+    .ui.borderless.main.menu.fixed.inverted
+      .ui.container
+        i.header.item Sredis
+        a.item(href='#Server') Server
+        a.item(href='#Memory') Memory
+        a.item(href='#Stats') Stats
+        a.item(href='#Persistence') Persistence
+        a.item(href='#Clients') Clients
+        a.item(href='#Replication') Replication
+        a.item(href='#CPU') CPU
+        a.item(href='#Keyspace') Keyspace
+        .right.item
+          a.ui(href='https://github.com/cyyyu/sredis', target='_blank')
+            i.github.icon
+    #table-container.ui.main.text.container
+      h1.ui.header Real time monitoring
+      table#Server.ui.celled.striped.table
+        thead
+          tr
+            th(colspan='2') Server
+        tbody
+          tr(v-for='val, key in Server')
+            td.collapsing(v-text='key')
+            td(v-text='val')
+      table#Memory.ui.celled.striped.table
+        thead
+          tr
+            th(colspan='2') Memory
+        tbody
+          tr(v-for='val, key in Memory')
+            td.collapsing(v-text='key')
+            td(v-text='val')
+      table#Stats.ui.celled.striped.table
+        thead
+          tr
+            th(colspan='2') Stats
+        tbody
+          tr(v-for='val, key in Stats')
+            td.collapsing(v-text='key')
+            td(v-text='val')
+      table#Persistence.ui.celled.striped.table
+        thead
+          tr
+            th(colspan='2') Persistence
+        tbody
+          tr(v-for='val, key in Persistence')
+            td.collapsing(v-text='key')
+            td(v-text='val')
+      table#Clients.ui.celled.striped.table
+        thead
+          tr
+            th(colspan='2') Clients
+        tbody
+          tr(v-for='val, key in Clients')
+            td.collapsing(v-text='key')
+            td(v-text='val')
+      table#Replication.ui.celled.striped.table
+        thead
+          tr
+            th(colspan='2') Replication
+        tbody
+          tr(v-for='val, key in Replication')
+            td.collapsing(v-text='key')
+            td(v-text='val')
+      table#CPU.ui.celled.striped.table
+        thead
+          tr
+            th(colspan='2') CPU
+        tbody
+          tr(v-for='val, key in CPU')
+            td.collapsing(v-text='key')
+            td(v-text='val')
+      table#Keyspace.ui.celled.striped.table
+        thead
+          tr
+            th(colspan='2') Keyspace
+        tbody
+          tr(v-for='val, key in Keyspace')
+            td.collapsing(v-text='key')
+            td(v-text='val')
+    
+    script.
+      initdata = !{initdata}
+    script(src='/javascripts/index.js')

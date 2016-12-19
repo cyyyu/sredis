@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+'use strict'
+
+const pkg = require('../package.json'),
+  commander = require('commander'),
+  Sredis = require('../'),
+  server = require('../server')
+
+commander.version(pkg.version)
+  .option('-v --version', 'get version')
+  .option('-h --host <host>', 'Server hostname (default: 127.0.0.1).')
+  .option('-p --port <port>', 'Server port (default: 6379).')
+  .option('-a --auth <password>', 'Password for redis server.')
+  .option('-o --output <filepath>', 'Output to csv file.')
+  .option('-i --interval <interval>', 'Refresh interval, mileseconds (default: 3000).')
+  .usage('[options]')
+  .parse(process.argv)
+
+let watcher = new Sredis({
+  host: commander.host,
+  port: commander.port,
+  password: commander.auth,
+  output: commander.output,
+  interval: commander.interval
+})
+
+watcher.on('error', function(err) {
+  throw err
+})
+
+watcher.on('watching', function() {
+  server.start(watcher)
+})
+
+watcher.on('statusUpdated', function(status) {
+  server.update(status)
+})
+
+watcher.on('historyUpdated', function(history) {
+  server.updateHistory(history)
+})

@@ -1,0 +1,29 @@
+{
+  "name": "sredis",
+  "version": "0.1.0",
+  "description": "A redis monitoring tool",
+  "main": "index.js",
+  "bin": {
+    "sredis": "bin/sredis"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "redis"
+  ],
+  "author": "cyyyu",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "redis": "^2.6.3"
+  },
+  "devDependencies": {
+    "koa": "^1.2.4",
+    "koa-router": "^5.4.0",
+    "koa-static": "^2.0.0",
+    "koa-views": "4.1",
+    "pug": "^2.0.0-beta6",
+    "socket.io": "^1.7.2"
+  }
+}
