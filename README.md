@@ -1,5 +1,9 @@
 # Sredis
 
+[![NPM](https://nodei.co/npm/sredis.png?mini=true)](https://nodei.co/npm/sredis/)
+
+
+
 Sredis is another redis monitoring tool written in javascript.
 
 ## Installation
