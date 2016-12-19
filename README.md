@@ -111,6 +111,12 @@ let mywatcher = new Sredis({
 
 
 
+---
+
+#### License: MIT
+
+#### Author: [cyyyu](https://github.com/cyyyu)
+
 
 
 
