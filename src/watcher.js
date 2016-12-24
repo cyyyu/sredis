@@ -54,17 +54,13 @@ class Sredis extends EventEmitter {
   _clientConnectedHandler(err) {
     let self = this
 
-    let s = [
-      ['script', 'load', 'return redis.call("info")']
-    ]
+    self._client.script('load', 'return redis.call("info")', function(err, re) {
+      self._hash = re
+      self.emit('scriptsLoaded')
+      self._evalLoop()
+    })
 
     self.emit('watching')
-
-    self._executer(s, 'scriptsLoading').then(function(re) {
-      self._hash = re[0]
-      self.emit('scriptsLoaded')
-      self._executeInterval()
-    })
   }
   _clientErrorHandler(err) {
     let self = this;
@@ -77,32 +73,12 @@ class Sredis extends EventEmitter {
       throw err
     }
   }
-  _executer(s, eventname) {
-    let self = this
-
-    if (eventname) {
-      self.emit(eventname)
-    }
-
-    return new Promise(function(resolve, reject) {
-      self._client.multi(s).exec(function(err, re) {
-        if (err) {
-          return reject(err)
-        }
-        return resolve(re)
-      })
-    })
-  }
-  _executeInterval() {
+  _evalLoop() {
     let self = this;
 
-    let s = [
-      ['evalsha', self._hash, '0']
-    ]
-
     setTimeout(function loop() {
-      self._executer(s, 'statusUpdating').then(function(re) {
-        let beautified = helper.beautify(re[0])
+      self._client.evalsha(self._hash, '0', function(err, re) {
+        let beautified = helper.beautify(re)
         Object.assign(self.status, beautified)
         self.emit('statusUpdated', beautified)
         setTimeout(loop, self._interval)
