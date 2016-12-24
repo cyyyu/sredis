@@ -66,8 +66,6 @@ let mywatcher = new Sredis({
 
 * event#watching
 
-* event#statusUpdating
-
 * event#statusUpdated
 
   ```
@@ -103,13 +101,13 @@ let mywatcher = new Sredis({
 
   ​
 
-* event#scriptsLoading
-
-  Lua script loading.
-
 * event#scriptsLoaded
 
   Lua script loaded.
+
+* event#error
+
+  Handle error events youself, or they will just be thrown out.
 
 ---
 
