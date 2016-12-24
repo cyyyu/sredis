@@ -27,8 +27,24 @@ html
         .right.item
           a.ui(href='https://github.com/cyyyu/sredis', target='_blank')
             i.github.icon
-    #table-container.ui.main.text.container
-      h1.ui.header Real time monitoring
+    #table-container.ui.main.container
+      h1 Real time monitoring...
+      .ui.divider
+      .ui.inverted.segment
+        .ui.inverted.yellow.statistic
+          .value(v-text='Memory.used_memory_human')
+          .label Used memory
+        .ui.inverted.teal.statistic
+          .value(v-text='Clients.connected_clients')
+          .label Clients
+        .ui.inverted.green.statistic
+          .value(v-text='Stats.total_commands_processed')
+          .label Commands processed
+        .ui.inverted.purple.statistic
+          .value(v-text='Server.uptime_in_days + "d"')
+          .label Uptime
+      .ui.divider
+      h2 Full informations
       table#Server.ui.celled.striped.table
         thead
           tr
