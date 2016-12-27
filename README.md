@@ -107,7 +107,7 @@ let mywatcher = new Sredis({
 
 * event#error
 
-  Handle error events youself, or they will just be thrown out.
+  Handle error events yourself, or they will just be thrown out.
 
 ---
 
