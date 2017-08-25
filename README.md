@@ -6,6 +6,8 @@
 
 Sredis is another redis monitoring tool written in javascript.
 
+It does nothing but just shows up everthing in a page by the internal `info` command provided by redis-client.
+
 ## Screenshots
 
 ![screenshot](./imgs/sredis.png)
@@ -98,12 +100,6 @@ let mywatcher = new Sredis({
     */
   })
   ```
-
-  ​
-
-* event#scriptsLoaded
-
-  Lua script loaded.
 
 * event#error
 
